@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'init_admin_account.dart';
+import 'login_account.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const InitAdminAccount(),
+      home: const LoginAccount(),
     );
   }
 }
