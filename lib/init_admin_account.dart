@@ -42,12 +42,13 @@ class _InitAdminAccountState extends State<InitAdminAccount> {
                 child: Center(
                   child: Container(
                     width: 270,
+                    padding: EdgeInsets.symmetric(vertical: 30),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(17.5),
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      spacing: 20,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
@@ -60,11 +61,11 @@ class _InitAdminAccountState extends State<InitAdminAccount> {
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: '用户名',
+                              hintStyle: TextStyle(color: Color(0xFFB2B2B2)),
                               border: InputBorder.none,
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
                         Container(
                           width: 195,
                           height: 36,
@@ -75,6 +76,7 @@ class _InitAdminAccountState extends State<InitAdminAccount> {
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: '密 码',
+                              hintStyle: TextStyle(color: Color(0xFFB2B2B2)),
                               border: InputBorder.none,
                             ),
                           ),
