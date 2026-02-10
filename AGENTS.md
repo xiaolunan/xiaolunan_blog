@@ -194,10 +194,84 @@ This project uses `flutter_lints` package. Key rules:
 - `always_use_package_imports`: Consistent import style
 - `avoid_relative_lib_imports`: No relative imports from lib/
 
+## Backend Server Information
+
+### Server Overview
+- **Project**: SobBlogSystemDemo
+- **Technology**: Java 17 + Spring Boot 2.7.18
+- **Build Tool**: Maven
+- **Database**: MySQL 5.7
+- **Cache**: Redis 7.0
+- **Authentication**: JWT tokens with Spring Security
+- **Documentation**: Swagger/OpenAPI
+
+### Development Environment
+
+**Docker Containers (Development)**
+
+| Container | Image | Port | Name |
+|-----------|-------|------|------|
+| Redis | redis:7.0.14 | 6379:6379 | sob-blog-system-redis |
+| MySQL | mysql:5.7.30 | 3306:3306 | sob-blog-system-mysql |
+
+```bash
+# Start containers
+docker start sob-blog-system-redis sob-blog-system-mysql
+
+# Stop containers
+docker stop sob-blog-system-redis sob-blog-system-mysql
+```
+
+### Production Environment (Cloud Server)
+
+- **Provider**: 阿里云 ECS
+- **OS**: Ubuntu 22.04 LTS
+- **Configuration**: 2 vCPU, 2 GiB RAM
+- **Hostname**: iZbp1jcv0f3ml1wyl8ugwiZ
+
+**API Base URL**: `http://<server-ip>:8080`
+- Application Port: 8080
+- Database Port: 3306 (MySQL)
+- Cache Port: 6379 (Redis)
+
+**Docker Containers (Production)**
+
+| Container | Image | Port Mapping | Name | Status |
+|-----------|-------|--------------|------|--------|
+| Application | sob-blog-system_app | 0.0.0.0:8080->8080/tcp | sob-blog-system-app | Running |
+| Redis | docker.m.daocloud.io/redis:7.0-alpine | 0.0.0.0:6379->6379/tcp | sob-blog-system-redis | Running |
+| MySQL | docker.m.daocloud.io/mysql:5.7.44 | 0.0.0.0:3306->3306/tcp | sob-blog-system-mysql | Running |
+
+**Production Container Management**
+
+```bash
+# SSH into the server
+ssh root@<server-ip>
+
+# View running containers
+docker ps
+
+# View specific container logs
+docker logs sob-blog-system-app
+docker logs sob-blog-system-redis
+docker logs sob-blog-system-mysql
+
+# Restart application container
+docker restart sob-blog-system-app
+
+# Stop all containers
+docker stop sob-blog-system-app sob-blog-system-redis sob-blog-system-mysql
+
+# Start all containers
+docker start sob-blog-system-mysql sob-blog-system-redis sob-blog-system-app
+```
+
 ## Additional Notes
 
 - Target platform: Flutter Web
 - Dart SDK: ^3.8.0
-- Backend: Spring Boot REST API
+- Backend: Spring Boot REST API (Port 8080)
 - Authentication: JWT Token
+- Database: MySQL 5.7 (Port 3306)
+- Cache: Redis 7.0 (Port 6379)
 - Follow Flutter official style guide: https://docs.flutter.dev/development/tools/formatting
