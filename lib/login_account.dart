@@ -20,13 +20,13 @@ class _LoginAccountState extends State<LoginAccount> {
 
   Widget _buildTextFieldContainer(Widget child) {
     return Container(
-      width: 195,
-      height: 36,
+      width: 220,
+      height: 50,
+      alignment: Alignment.centerLeft,
       padding: EdgeInsets.only(left: 20, right: 10),
-      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Color(0xFFD7D7D7),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: child,
     );
@@ -62,7 +62,7 @@ class _LoginAccountState extends State<LoginAccount> {
                   child: Text(
                     'xiaolunan |博客',
                     style: TextStyle(
-                      fontSize: 40,
+                      fontSize: 50,
                       color: Color(0xFF3BB3C3),
                       fontFamily: 'STHupo',
                     ),
@@ -92,6 +92,7 @@ class _LoginAccountState extends State<LoginAccount> {
                           border: InputBorder.none,
                         ),
                       ),
+                      //Text('你好'),
                     ),
                     _buildTextFieldContainer(
                       TextField(
@@ -127,7 +128,7 @@ class _LoginAccountState extends State<LoginAccount> {
                             child: Text(
                               '获取验证码',
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 16,
                                 color: Color(0xFF0784dc),
                               ),
                             ),
@@ -136,8 +137,8 @@ class _LoginAccountState extends State<LoginAccount> {
                       ),
                     ),
                     Container(
-                      width: 195,
-                      height: 36,
+                      width: 220,
+                      height: 50,
                       child: TextButton(
                         onPressed: () {
                           var userName = _userNameController.text.trim();
@@ -163,7 +164,7 @@ class _LoginAccountState extends State<LoginAccount> {
                         child: Text(
                           '登录',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
