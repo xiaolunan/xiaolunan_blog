@@ -10,7 +10,7 @@ final dio = Dio();
 void initNetwork() {
   // 你可以在这里添加 BaseOptions，例如 baseUrl 或 timeout
   dio.options.connectTimeout = const Duration(seconds: 5);
-  dio.interceptors.add(AuthInterceptor());
+  //dio.interceptors.add(AuthInterceptor());
 }
 
 /// 通用 GET 请求封装 (改为公开方法以便外部调用)

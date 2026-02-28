@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants.dart';
+import '../../services/user_api.dart';
 
 /**
  * 登录
@@ -21,10 +23,10 @@ class _LoginAccountState extends State<LoginAccount> {
 
   Widget _buildTextFieldContainer(Widget child) {
     return Container(
-      width: 220,
+      width: 250,
       height: 50,
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(left: 20, right: 10),
+      padding: EdgeInsets.only(left: 20),
       decoration: BoxDecoration(
         color: Color(0xFFD7D7D7),
         borderRadius: BorderRadius.circular(25),
@@ -83,7 +85,7 @@ class _LoginAccountState extends State<LoginAccount> {
             Flexible(
               flex: 2,
               child: Container(
-                width: 270,
+                width: 300,
                 padding: EdgeInsets.symmetric(vertical: 30),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -134,18 +136,23 @@ class _LoginAccountState extends State<LoginAccount> {
                             },
                             child: Image.network(
                               captchaImageUrl,
-                              height: 49,
+                              height: 50,
                               width: 100,
                               fit: BoxFit.fill,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
-                                  height: 40,
+                                  height: 50,
                                   width: 100,
                                   color: Colors.grey,
                                   child: Center(child: Text('加载失败')),
                                 );
                               },
                             ),
+                          ),
+                          Container(
+                            height: 50,
+                            width: 22,
+                            decoration: BoxDecoration(color: Colors.white),
                           ),
                         ],
                       ),
@@ -154,7 +161,7 @@ class _LoginAccountState extends State<LoginAccount> {
                       width: 220,
                       height: 50,
                       child: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           var userName = _userNameController.text.trim();
                           if (userName.isEmpty) {
                             _showMessage('请输入账号或邮箱！');
@@ -167,8 +174,38 @@ class _LoginAccountState extends State<LoginAccount> {
                             return;
                           }
 
-                          // 登录成功的提示
-                          _showMessage('登录成功！', backgroundColor: Colors.green);
+                          String verificationCode = _verificationCode.text
+                              .trim();
+                          if (verificationCode.isEmpty) {
+                            _showMessage('请输入验证码！');
+                            return;
+                          }
+
+                          var sobUser = {'userName': userName, 'password': password};
+                          var responseResult = await UserApi().loginUser(
+                            sobUser: sobUser,
+                            captcha: verificationCode,
+                            captchaKey: Constants.captchaKey,
+                          );
+                          if (responseResult.code == Constants.successCode) {
+                            // 登录成功的提示
+                            _showMessage('登录成功！', backgroundColor: Colors.green);
+                            var userId = responseResult.data['id'];
+                            SharedPreferences shared =
+                                await SharedPreferences.getInstance();
+                            shared.setString("userId", userId);
+
+                            // 登录成功后
+                            shared.setString(
+                              "auth_token",
+                              responseResult.data['tokenKey'],
+                            );
+
+                            //登录成功跳转页面
+
+                          } else {
+                            _showMessage(responseResult.message, backgroundColor: Colors.red);
+                          }
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
