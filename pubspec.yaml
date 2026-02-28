@@ -17,7 +17,7 @@ dependencies:
   # 网络请求
   dio: ^5.9.1
   retrofit: ^4.9.2
-  shared_preferences: 2.5.1  #在设备上持久化存储少量数据
+  shared_preferences: ^2.5.3  #在设备上持久化存储少量数据
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
