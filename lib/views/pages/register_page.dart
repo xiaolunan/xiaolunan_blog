@@ -2,20 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /**
- * 初始化管理员账号
+ * 注册
  */
-class LoginAccount extends StatefulWidget {
-  const LoginAccount({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginAccount> createState() => _LoginAccountState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginAccountState extends State<LoginAccount> {
+class _RegisterPageState extends State<RegisterPage> {
+
   late final TextEditingController _userNameController =
-      TextEditingController(); // 先声明但不初始化
+  TextEditingController(); // 先声明但不初始化
   late final TextEditingController _passwordController =
-      TextEditingController(); // 先声明但不初始化
+  TextEditingController(); // 先声明但不初始化
   late final TextEditingController _verificationCode = TextEditingController();
 
   Widget _buildTextFieldContainer(Widget child) {
@@ -33,10 +34,10 @@ class _LoginAccountState extends State<LoginAccount> {
   }
 
   void _showMessage(
-    String message, {
-    Duration duration = const Duration(seconds: 2),
-    Color backgroundColor = Colors.red,
-  }) {
+      String message, {
+        Duration duration = const Duration(seconds: 2),
+        Color backgroundColor = Colors.red,
+      }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -45,6 +46,7 @@ class _LoginAccountState extends State<LoginAccount> {
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -120,10 +122,10 @@ class _LoginAccountState extends State<LoginAccount> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              _showMessage(
+                              /*_showMessage(
                                 '验证码已发送！',
                                 backgroundColor: Colors.green,
-                              );
+                              );*/
                             },
                             child: Text(
                               '获取验证码',
