@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Sidebar extends StatefulWidget {
+  final Function(int) onPageSelected;
+  
+  const Sidebar({super.key, required this.onPageSelected});
+
   @override
   _SidebarState createState() => _SidebarState();
 }
@@ -27,17 +31,24 @@ class _SidebarState extends State<Sidebar> {
                 ListTile(
                   leading: Icon(Icons.home),
                   title: Text("首页"),
-                  onTap: () => {
-
-                  },
+                  onTap: () => widget.onPageSelected(0),
                 ),
                 ExpansionTile(
-                  leading: Icon(Icons.shopping_cart),
-                  title: Text("订单管理"),
+                  leading: Icon(Icons.dashboard),
+                  title: Text("内容管理"),
                   children: [
-                    ListTile(title: Text("后台管理")),
-                    ListTile(title: Text("用户管理")),
-                    ListTile(title: Text("门户管理")),
+                    ListTile(
+                      title: Text("后台管理"),
+                      onTap: () => widget.onPageSelected(1),
+                    ),
+                    ListTile(
+                      title: Text("用户管理"),
+                      onTap: () => widget.onPageSelected(2),
+                    ),
+                    ListTile(
+                      title: Text("门户管理"),
+                      onTap: () => widget.onPageSelected(3),
+                    ),
                   ],
                 ),
                 // 其他菜单...

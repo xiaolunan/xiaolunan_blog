@@ -5,8 +5,11 @@ import 'package:xiaolunan_blog/views/pages/user_manage_page.dart';
 
 import '../sidebar.dart';
 import 'admin_manage_page.dart';
+import 'home_manage_page.dart';
 
 class MainManage extends StatefulWidget {
+  static const String id = "MainManage";
+
   const MainManage({super.key});
 
   @override
@@ -14,10 +17,10 @@ class MainManage extends StatefulWidget {
 }
 
 class _MainManageState extends State<MainManage> {
-
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
+    HomeManagePage(), // 首页
     AdminManagePage(), // 后台管理
     UserManagementPage(), // 用户管理
     PortalManagementPage(), // 门户管理
@@ -53,16 +56,25 @@ class _MainManageState extends State<MainManage> {
                     SizedBox(width: 10),
                     CircleAvatar(child: Text("王")),
                   ],
-                )
+                ),
               ],
             ),
           ),
           Row(
             children: [
               // 左侧导航栏
-              Expanded(flex: 0, child: Sidebar()),
+              Expanded(
+                flex: 0,
+                child: Sidebar(
+                  onPageSelected: (index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                ),
+              ),
               // 右侧内容区
-              Expanded(child:),
+              Expanded(child: _pages[_selectedIndex]),
             ],
           ),
         ],

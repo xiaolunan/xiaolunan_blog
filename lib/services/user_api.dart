@@ -29,7 +29,7 @@ class UserApi {
     required String captchaKey,
   }) {
     return httpPost(
-      '${Constants.baseUrl}/user/register',
+      '${Constants.baseUrl}/user/join_in',
       data: sobUser,
       queryParameters: {
         'emailCode': emailCode,
@@ -46,7 +46,7 @@ class UserApi {
     required String captchaKey,
   }) {
     // 将 captcha 和 captchaKey 拼接到 URL 路径中
-    final url = '${Constants.baseUrl}/user/$captcha/$captchaKey';
+    final url = '${Constants.baseUrl}/user/log_on/$captcha/$captchaKey';
     return httpPost(url, data: sobUser);
   }
 

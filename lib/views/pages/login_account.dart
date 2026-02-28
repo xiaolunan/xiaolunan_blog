@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xiaolunan_blog/views/pages/main_manage.dart';
 
 import '../../constants.dart';
 import '../../services/user_api.dart';
@@ -8,6 +9,8 @@ import '../../services/user_api.dart';
  * 登录
  */
 class LoginAccount extends StatefulWidget {
+  static const String id = "LoginAccount";
+
   const LoginAccount({super.key});
 
   @override
@@ -181,7 +184,10 @@ class _LoginAccountState extends State<LoginAccount> {
                             return;
                           }
 
-                          var sobUser = {'userName': userName, 'password': password};
+                          var sobUser = {
+                            'userName': userName,
+                            'password': password,
+                          };
                           var responseResult = await UserApi().loginUser(
                             sobUser: sobUser,
                             captcha: verificationCode,
@@ -189,7 +195,10 @@ class _LoginAccountState extends State<LoginAccount> {
                           );
                           if (responseResult.code == Constants.successCode) {
                             // 登录成功的提示
-                            _showMessage('登录成功！', backgroundColor: Colors.green);
+                            _showMessage(
+                              '登录成功！',
+                              backgroundColor: Colors.green,
+                            );
                             var userId = responseResult.data['id'];
                             SharedPreferences shared =
                                 await SharedPreferences.getInstance();
@@ -202,9 +211,12 @@ class _LoginAccountState extends State<LoginAccount> {
                             );
 
                             //登录成功跳转页面
-
+                            Navigator.pushNamed(context, MainManage.id);
                           } else {
-                            _showMessage(responseResult.message, backgroundColor: Colors.red);
+                            _showMessage(
+                              responseResult.message,
+                              backgroundColor: Colors.red,
+                            );
                           }
                         },
                         style: ButtonStyle(

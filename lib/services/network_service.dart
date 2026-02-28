@@ -6,12 +6,12 @@ import 'authInterceptor.dart';
 /// 全局 Dio 实例
 final dio = Dio();
 
-/// 初始化网络配置
+/*/// 初始化网络配置
 void initNetwork() {
   // 你可以在这里添加 BaseOptions，例如 baseUrl 或 timeout
   dio.options.connectTimeout = const Duration(seconds: 5);
-  //dio.interceptors.add(AuthInterceptor());
-}
+  dio.interceptors.add(AuthInterceptor());
+}*/
 
 /// 通用 GET 请求封装 (改为公开方法以便外部调用)
 Future<ResponseResult> httpGet(

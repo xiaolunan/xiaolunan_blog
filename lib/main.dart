@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xiaolunan_blog/views/pages/home_manage_page.dart';
+import 'package:xiaolunan_blog/views/pages/main_manage.dart';
 
 import 'views/pages/login_account.dart';
 
@@ -16,7 +18,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginAccount(),
+      initialRoute: MainManage.id,
+      routes: {
+        LoginAccount.id: (context) => const LoginAccount(),
+        MainManage.id: (context) => const MainManage(),
+      },
     );
   }
 }
