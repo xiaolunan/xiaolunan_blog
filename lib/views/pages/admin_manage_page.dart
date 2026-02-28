@@ -14,6 +14,6 @@ class AdminManagePage extends StatefulWidget {
 class _AdminManagePageState extends State<AdminManagePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text('后台管理'),);
+    return Center(child: Text('后台管理'));
   }
 }

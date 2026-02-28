@@ -14,6 +14,6 @@ class UserManagementPage extends StatefulWidget {
 class _UserManagementPageState extends State<UserManagementPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text('用户管理'),);
+    return Center(child:  Text('用户管理'),);
   }
 }

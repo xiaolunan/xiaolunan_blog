@@ -11,6 +11,6 @@ class HomeManagePage extends StatefulWidget {
 class _HomeManagePageState extends State<HomeManagePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text('首页'),);
+    return Center(child: Text('首页'));
   }
 }

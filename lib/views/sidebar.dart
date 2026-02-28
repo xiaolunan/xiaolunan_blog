@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Sidebar extends StatefulWidget {
   final Function(int) onPageSelected;
-  
+
   const Sidebar({super.key, required this.onPageSelected});
 
   @override
@@ -20,11 +20,6 @@ class _SidebarState extends State<Sidebar> {
       color: Colors.white,
       child: Column(
         children: [
-          // 折叠按钮（可选）
-          IconButton(
-            icon: Icon(isCollapsed ? Icons.menu : Icons.close),
-            onPressed: () => setState(() => isCollapsed = !isCollapsed),
-          ),
           Expanded(
             child: ListView(
               children: [

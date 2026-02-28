@@ -60,22 +60,26 @@ class _MainManageState extends State<MainManage> {
               ],
             ),
           ),
-          Row(
-            children: [
-              // 左侧导航栏
-              Expanded(
-                flex: 0,
-                child: Sidebar(
+          Expanded(
+            child: Row(
+              children: [
+                // 左侧导航栏
+                Sidebar(
                   onPageSelected: (index) {
                     setState(() {
                       _selectedIndex = index;
                     });
                   },
                 ),
-              ),
-              // 右侧内容区
-              Expanded(child: _pages[_selectedIndex]),
-            ],
+                // 右侧内容区
+                Expanded(
+                  child: Container(
+                    color: Colors.grey[50],
+                    child: _pages[_selectedIndex],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

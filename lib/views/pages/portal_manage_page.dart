@@ -14,6 +14,6 @@ class PortalManagementPage extends StatefulWidget {
 class _PortalManagementPageState extends State<PortalManagementPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text('门户管理'));
+    return Center(child: Text('门户管理'));
   }
 }
